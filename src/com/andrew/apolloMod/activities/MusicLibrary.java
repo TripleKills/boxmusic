@@ -4,12 +4,16 @@
 
 package com.andrew.apolloMod.activities;
 
+import static com.andrew.apolloMod.Constants.MIME_TYPE;
+import static com.andrew.apolloMod.Constants.PLAYLIST_RECENTLY_ADDED;
+import static com.andrew.apolloMod.Constants.TABS_ENABLED;
+import static com.andrew.apolloMod.Constants.THEME_ITEM_BACKGROUND;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -28,7 +32,6 @@ import android.provider.BaseColumns;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Audio.AudioColumns;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,6 +40,12 @@ import android.widget.ImageView;
 
 import com.andrew.apolloMod.IApolloService;
 import com.andrew.apolloMod.R;
+import com.andrew.apolloMod.helpers.utils.ApolloUtils;
+import com.andrew.apolloMod.helpers.utils.MusicUtils;
+import com.andrew.apolloMod.helpers.utils.ThemeUtils;
+import com.andrew.apolloMod.preferences.SettingsHolder;
+import com.andrew.apolloMod.service.ApolloService;
+import com.andrew.apolloMod.service.ServiceToken;
 import com.andrew.apolloMod.ui.adapters.PagerAdapter;
 import com.andrew.apolloMod.ui.adapters.ScrollingTabsAdapter;
 import com.andrew.apolloMod.ui.fragments.grid.AlbumsFragment;
@@ -45,24 +54,14 @@ import com.andrew.apolloMod.ui.fragments.list.GenresFragment;
 import com.andrew.apolloMod.ui.fragments.list.PlaylistsFragment;
 import com.andrew.apolloMod.ui.fragments.list.RecentlyAddedFragment;
 import com.andrew.apolloMod.ui.fragments.list.TracksFragment;
-import com.andrew.apolloMod.helpers.utils.ApolloUtils;
-import com.andrew.apolloMod.helpers.utils.MusicUtils;
-import com.andrew.apolloMod.helpers.utils.ThemeUtils;
-import com.andrew.apolloMod.preferences.SettingsHolder;
-import com.andrew.apolloMod.service.ApolloService;
-import com.andrew.apolloMod.service.ServiceToken;
 import com.andrew.apolloMod.ui.widgets.ScrollableTabView;
-
-import static com.andrew.apolloMod.Constants.MIME_TYPE;
-import static com.andrew.apolloMod.Constants.PLAYLIST_RECENTLY_ADDED;
-import static com.andrew.apolloMod.Constants.TABS_ENABLED;
-import static com.andrew.apolloMod.Constants.THEME_ITEM_BACKGROUND;
+import com.andrew.apolloMod.umeng.BaseActivity;
 
 /**
  * @author Andrew Neal
  * @Note This is the "holder" for all of the tabs
  */
-public class MusicLibrary extends Activity implements ServiceConnection {
+public class MusicLibrary extends BaseActivity implements ServiceConnection {
 
     private ServiceToken mToken;
     @Override

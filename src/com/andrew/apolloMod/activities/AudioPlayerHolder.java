@@ -4,7 +4,11 @@
 
 package com.andrew.apolloMod.activities;
 
-import android.app.Activity;
+import static com.andrew.apolloMod.Constants.INTENT_ADD_TO_PLAYLIST;
+import static com.andrew.apolloMod.Constants.INTENT_PLAYLIST_LIST;
+import static com.andrew.apolloMod.Constants.MIME_TYPE;
+import static com.andrew.apolloMod.Constants.PLAYLIST_QUEUE;
+import static com.andrew.apolloMod.Constants.THEME_ITEM_BACKGROUND;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -28,29 +32,24 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.andrew.apolloMod.ui.adapters.PagerAdapter;
-import com.andrew.apolloMod.ui.fragments.AudioPlayerFragment;
 import com.andrew.apolloMod.IApolloService;
 import com.andrew.apolloMod.R;
-import com.andrew.apolloMod.ui.fragments.list.TracksFragment;
 import com.andrew.apolloMod.helpers.utils.ApolloUtils;
 import com.andrew.apolloMod.helpers.utils.MusicUtils;
 import com.andrew.apolloMod.helpers.utils.ThemeUtils;
 import com.andrew.apolloMod.preferences.SettingsHolder;
 import com.andrew.apolloMod.service.ApolloService;
 import com.andrew.apolloMod.service.ServiceToken;
-
-import static com.andrew.apolloMod.Constants.INTENT_ADD_TO_PLAYLIST;
-import static com.andrew.apolloMod.Constants.INTENT_PLAYLIST_LIST;
-import static com.andrew.apolloMod.Constants.MIME_TYPE;
-import static com.andrew.apolloMod.Constants.PLAYLIST_QUEUE;
-import static com.andrew.apolloMod.Constants.THEME_ITEM_BACKGROUND;
+import com.andrew.apolloMod.ui.adapters.PagerAdapter;
+import com.andrew.apolloMod.ui.fragments.AudioPlayerFragment;
+import com.andrew.apolloMod.ui.fragments.list.TracksFragment;
+import com.andrew.apolloMod.umeng.BaseActivity;
 
 /**
  * @author Andrew Neal
  * @Note This is the "holder" for the @TracksFragment(queue) and @AudioPlayerFragment
  */
-public class AudioPlayerHolder extends Activity implements ServiceConnection {
+public class AudioPlayerHolder extends BaseActivity implements ServiceConnection {
 
     private ServiceToken mToken;
 

@@ -4,21 +4,20 @@
 
 package com.andrew.apolloMod.activities;
 
-import android.app.Activity;
+import static com.andrew.apolloMod.Constants.MIME_TYPE;
+import static com.andrew.apolloMod.Constants.PLAYLIST_QUEUE;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.provider.BaseColumns;
 import android.provider.MediaStore.Audio;
 
 import com.andrew.apolloMod.ui.fragments.grid.QuickQueueFragment;
-
-import static com.andrew.apolloMod.Constants.MIME_TYPE;
-import static com.andrew.apolloMod.Constants.PLAYLIST_QUEUE;
+import com.andrew.apolloMod.umeng.BaseActivity;
 
 /**
  * @author Andrew Neal
  */
-public class QuickQueue extends Activity {
+public class QuickQueue extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle icicle) {

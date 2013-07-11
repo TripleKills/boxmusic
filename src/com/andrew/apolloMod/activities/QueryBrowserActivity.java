@@ -16,7 +16,10 @@
 
 package com.andrew.apolloMod.activities;
 
-import android.app.ListActivity;
+import static com.andrew.apolloMod.Constants.ALBUM_KEY;
+import static com.andrew.apolloMod.Constants.ARTIST_ID;
+import static com.andrew.apolloMod.Constants.ARTIST_KEY;
+import static com.andrew.apolloMod.Constants.MIME_TYPE;
 import android.app.SearchManager;
 import android.content.AsyncQueryHandler;
 import android.content.ComponentName;
@@ -50,13 +53,9 @@ import com.andrew.apolloMod.R;
 import com.andrew.apolloMod.helpers.utils.ApolloUtils;
 import com.andrew.apolloMod.helpers.utils.MusicUtils;
 import com.andrew.apolloMod.service.ServiceToken;
+import com.andrew.apolloMod.umeng.BaseListActivity;
 
-import static com.andrew.apolloMod.Constants.ALBUM_KEY;
-import static com.andrew.apolloMod.Constants.ARTIST_ID;
-import static com.andrew.apolloMod.Constants.ARTIST_KEY;
-import static com.andrew.apolloMod.Constants.MIME_TYPE;
-
-public class QueryBrowserActivity extends ListActivity implements ServiceConnection {
+public class QueryBrowserActivity extends BaseListActivity implements ServiceConnection {
     private QueryListAdapter mAdapter;
 
     private boolean mAdapterSent;
