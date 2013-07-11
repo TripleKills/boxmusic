@@ -32,11 +32,13 @@ import android.provider.BaseColumns;
 import android.provider.MediaStore.Audio;
 import android.provider.MediaStore.Audio.AudioColumns;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.andrew.apolloMod.IApolloService;
 import com.andrew.apolloMod.R;
@@ -56,6 +58,10 @@ import com.andrew.apolloMod.ui.fragments.list.RecentlyAddedFragment;
 import com.andrew.apolloMod.ui.fragments.list.TracksFragment;
 import com.andrew.apolloMod.ui.widgets.ScrollableTabView;
 import com.andrew.apolloMod.umeng.BaseActivity;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UmengUpdateListener;
+import com.umeng.update.UpdateResponse;
 
 /**
  * @author Andrew Neal
@@ -86,6 +92,10 @@ public class MusicLibrary extends BaseActivity implements ServiceConnection {
         
         // Important!
         initPager();  
+        
+        //umeng
+        FeedbackAgent agent = new FeedbackAgent(this);
+        agent.sync();
     }
 
     @Override
@@ -237,7 +247,35 @@ public class MusicLibrary extends BaseActivity implements ServiceConnection {
 	        case R.id.action_shuffle_all:
 	        	shuffleAll();
 	            break;
+	        case R.id.feed_back: {
+            	FeedbackAgent agent = new FeedbackAgent(this);
+                agent.startFeedbackActivity();
+            	break;
+            }
+            case R.id.check_update: {
+            	UmengUpdateListener updateListener = new UmengUpdateListener() {
+        			@Override
+        			public void onUpdateReturned(int updateStatus,
+        					UpdateResponse updateInfo) {
+        				switch (updateStatus) {
+        				case 0: // has update
+        					Log.i("--->", "callback result");
+        					UmengUpdateAgent.showUpdateDialog(MusicLibrary.this, updateInfo);
+        					break;
+        				case 1: // has no update
+        					Toast.makeText(MusicLibrary.this, "已是最新版本", Toast.LENGTH_SHORT)
+        							.show();
+        					break;
+        				}
 
+        			}
+        		};
+            	UmengUpdateAgent.update(this);
+            	UmengUpdateAgent.setUpdateListener(updateListener);
+            	Toast.makeText(MusicLibrary.this, "正在检查更新...", Toast.LENGTH_SHORT)
+				.show();
+            	break;
+            }
             default:
                 return super.onOptionsItemSelected(item);
         }

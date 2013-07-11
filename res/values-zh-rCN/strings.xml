@@ -53,6 +53,8 @@
     <string name="shuffle_all">全部随机播放</string>
     <string name="share">分享</string>
     <string name="play_store">Play 商店</string>
+    <string name="feed_back">反馈</string>
+    <string name="check_update">检查更新</string>
 
     <!-- Set track as ringtone -->
     <string name="set_as_ringtone">\"<xliff:g id="name" example="Alarm Bell">%s</xliff:g>\" 设置为手机铃声</string>

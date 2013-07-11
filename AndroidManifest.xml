@@ -26,6 +26,7 @@
 	
 	<!-- umeng -->
 	<uses-permission android:name="android.permission.READ_LOGS"/>
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowTaskReparenting="true"
@@ -223,7 +224,13 @@
         <!-- umeng -->
         <meta-data android:value="51de42f556240bd40e031593" android:name="UMENG_APPKEY"></meta-data>
 		<meta-data android:value="c_original" android:name="UMENG_CHANNEL"/>
-		
+		<activity android:name="com.umeng.fb.ConversationActivity"/>
+		<activity android:name="com.umeng.fb.ContactActivity"/>
+		<service
+		    android:name="com.umeng.common.net.DownloadingService"
+		    android:exported="true"
+		    android:process=":DownloadingService" >
+		</service>
     </application>
 	
 </manifest>
